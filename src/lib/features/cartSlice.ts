@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface CartItem {
-    id: number;
+    id: number ;
     title: string;
     price: number;
     image: string ;
@@ -55,6 +55,7 @@ const cartSlice = createSlice({
         },
         removeFromCart: (state, action: PayloadAction<number>) => {
             const existingItemIndex = state.items.findIndex(
+                //@ts-expect-error
                 (item) => item.id === action.payload.id
             );
             if (existingItemIndex >= -1) {

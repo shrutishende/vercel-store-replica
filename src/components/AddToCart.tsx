@@ -4,17 +4,11 @@ import { Button } from "./ui/button";
 import { addToCart, CartItem } from "@/lib/features/cartSlice";
 import { useDispatch } from "react-redux";
 
-interface Product {
-    id: number;
-    title: string;
-    price: number;
-    image: string;
-    description: string;
-    style: string;
-}
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function AddToCart({ product}:any) {
-    const [cartItem, setCartItem] = useState({
+   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [cartItem] = useState({
         id: product.id,
         title: product.title,
         price: product.price,

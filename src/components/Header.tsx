@@ -29,7 +29,6 @@ function Header() {
     const count = useAppSelector((state: RootState) => state.cart.items);
     console.log("cccc", count);
 
-    const cartItems = useAppSelector((state: RootState) => state.cart.items);
     const dispatch = useDispatch();
 
     console.log("viewCart" + viewCart);
