@@ -14,15 +14,17 @@ import {
     initializeCart,
     
 } from "@/lib/features/cartSlice";
-import Divider from "@mui/material/Divider";
 
-function Cart({ setViewCart }) {
+
+interface CartProps {
+    setViewCart: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+function Cart({ setViewCart }: CartProps) {
     const cartItems = useAppSelector((state: RootState) => state.cart.items);
     const totalPrice = useAppSelector(
         (state: RootState) => state.cart.totalPrice
     );
-
-    
 
     const dispatch = useDispatch();
     useEffect(() => {

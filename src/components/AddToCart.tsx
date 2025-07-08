@@ -2,18 +2,24 @@
 import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { addToCart, CartItem } from "@/lib/features/cartSlice";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "@/lib/store";
-import Badge from "@mui/material/Badge";
-import { useAppSelector } from "@/lib/hooks";
+import { useDispatch } from "react-redux";
 
-function AddToCart({ product }) {
+interface Product {
+    id: number;
+    title: string;
+    price: number;
+    image: string;
+    description: string;
+    style: string;
+}
+
+function AddToCart({ product}:any) {
     const [cartItem, setCartItem] = useState({
         id: product.id,
         title: product.title,
         price: product.price,
         quantity: 1,
-        image: product.image
+        image: product.image,
     } as CartItem);
 
     const dispatch = useDispatch();

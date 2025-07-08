@@ -1,7 +1,5 @@
 import AddToCart from "@/components/AddToCart";
 import Header from "@/components/Header";
-import { Button } from "@/components/ui/button";
-
 import { products } from "@/lib/data";
 import Image from "next/image";
 
@@ -10,8 +8,23 @@ import React from "react";
 async function page({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
 
-    const product = products.find((p) => p.id === parseInt(slug));
-    console.log(product);
+    const productId = slug ? parseInt(slug, 10) : NaN;
+    const product = !isNaN(productId)
+        ? products.find((p) => p.id === productId)
+        : undefined;
+    //const product = products.find((p) => p.id === parseInt(slug));
+
+    if (!product) {
+        return (
+            <div className="mx-auto max-w-screen-2xl px-4 py-8">
+                <Header />
+                
+                <div className="text-center text-2xl text-gray-500 dark:text-gray-400">
+                    Product not found
+                </div>
+            </div>
+        );
+    }
     return (
         <>
             <Header />
