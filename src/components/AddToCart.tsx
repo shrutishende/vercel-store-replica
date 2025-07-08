@@ -7,18 +7,16 @@ import { RootState } from "@/lib/store";
 import Badge from "@mui/material/Badge";
 import { useAppSelector } from "@/lib/hooks";
 
-function AddToCart() {
-    const [count, setCount] = useState(0);
+function AddToCart({ product }) {
     const [cartItem, setCartItem] = useState({
-        id: 1,
-        title: "ppp",
-        price: 20,
+        id: product.id,
+        title: product.title,
+        price: product.price,
         quantity: 1,
+        image: product.image
     } as CartItem);
-    const cartItems = useSelector((state: RootState) => state.cart.items);
-    const dispatch = useDispatch();
 
-    // console.log(count);
+    const dispatch = useDispatch();
 
     return (
         <div>
@@ -27,11 +25,6 @@ function AddToCart() {
                 className="bg-[#00A3FF] hover:bg-[#0090E0] w-full max-w-xs"
                 onClick={() => {
                     dispatch(addToCart(cartItem));
-                    // setCount(0);
-                    // setCartItem({
-                    //     ...cartItem,
-                    //     quantity: cartItem.quantity + 1,
-                    // });
                 }}
             >
                 Add to Cart

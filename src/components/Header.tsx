@@ -13,7 +13,7 @@ import { useAppSelector } from "@/lib/hooks";
 import { RootState } from "@/lib/store";
 import { useDispatch } from "react-redux";
 import Cart from "./Cart";
-import { addToCart } from "@/lib/features/cartSlice";
+import { initializeCart } from "@/lib/features/cartSlice";
 
 function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,22 +31,16 @@ function Header() {
 
     const cartItems = useAppSelector((state: RootState) => state.cart.items);
     const dispatch = useDispatch();
-    const handleAddToCart = (item: {
-        id: number;
-        name: string;
-        price: number;
-    }) => {
-        dispatch(addToCart(item));
-    };
 
+    console.log("viewCart" + viewCart);
     let totalQuantity = 0;
     count.forEach((item) => {
         totalQuantity += item.quantity;
     });
 
-    // useEffect(() => {
-    //     dispatch(initializeCart());
-    // }, [dispatch];
+    useEffect(() => {
+        dispatch(initializeCart());
+    }, [dispatch]);
 
     return (
         <>
@@ -78,7 +72,7 @@ function Header() {
                     </div>
 
                     {/* Mobile Menu Toggle */}
-                    <div className="md:hidden container mx-auto">
+                    <div className="md:hidden container mx-auto z-10 ">
                         <div className="md:hidden flex items-center justify-between">
                             <button
                                 className=""
@@ -96,7 +90,7 @@ function Header() {
                     {/* Mobile Navigation */}
 
                     {isMenuOpen && (
-                        <nav className="absolute top-16 left-0 w-full bg-white shadow-md md:hidden dark:bg-black">
+                        <nav className="z-10 absolute top-16 left-0 w-full bg-white shadow-md md:hidden dark:bg-black">
                             <div className="flex-1 max-w-md mx-4">
                                 <div className="relative ">
                                     <Input
@@ -147,13 +141,15 @@ function Header() {
                         <Button
                             variant="outline"
                             className="bg-transparent border-white text-white hover:bg-gray-800"
-                            onClick={() => setViewCart(!viewCart)}
+                            onClick={() => {
+                                setViewCart(!viewCart);
+                            }}
                         >
                             <ShoppingCartOutlinedIcon />
                         </Button>
                     </Badge>
                 </div>
-                {viewCart ? <Cart /> : null}
+                {viewCart ? <Cart setViewCart={setViewCart} /> : null}
             </header>
         </>
     );

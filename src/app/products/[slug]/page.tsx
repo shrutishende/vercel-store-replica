@@ -41,7 +41,7 @@ async function page({ params }: { params: Promise<{ slug: string }> }) {
                             </div>
                         </div>
 
-                        <AddToCart/>
+                        <AddToCart product={product} />
                     </div>
                 </div>
             </div>
