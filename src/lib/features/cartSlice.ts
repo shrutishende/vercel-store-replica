@@ -55,10 +55,10 @@ const cartSlice = createSlice({
         },
         removeFromCart: (state, action: PayloadAction<number>) => {
             const existingItemIndex = state.items.findIndex(
-                //@ts-expect-error
-                (item) => item.id === action.payload.id
+                 
+                (item) => item.id === action.payload
             );
-            if (existingItemIndex >= -1) {
+            if (existingItemIndex !== -1) {
                 state.items.splice(existingItemIndex, 1);
             }
         },

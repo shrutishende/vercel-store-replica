@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function AddToCart({ product}:any) {
-   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  
     const [cartItem] = useState({
         id: product.id,
         title: product.title,

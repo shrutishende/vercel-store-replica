@@ -12,9 +12,7 @@ import {
     decreaseCount,
     increaseCount,
     initializeCart,
-    
 } from "@/lib/features/cartSlice";
-
 
 interface CartProps {
     setViewCart: React.Dispatch<React.SetStateAction<boolean>>;
@@ -50,10 +48,10 @@ function Cart({ setViewCart }: CartProps) {
             {cartItems.length === 0 ? (
                 <Typography>Your Cart is empty</Typography>
             ) : (
-                <>
+                <div>
                     {cartItems.map((item) => (
-                        <>
-                            <div className="flex mt-10" key={item.id}>
+                        <div key={item.id}>
+                            <div className="flex mt-10">
                                 <div className="border rounded-md border-gray-500">
                                     <Image
                                         src={item.image}
@@ -90,13 +88,13 @@ function Cart({ setViewCart }: CartProps) {
                                     +
                                 </button>
                             </div>
-                        </>
+                        </div>
                     ))}
                     <hr className="mt-12" />
                     <div className="font-bold mt-7">
                         total price :{totalPrice.toFixed(2)}
                     </div>
-                </>
+                </div>
             )}
         </div>
     );
